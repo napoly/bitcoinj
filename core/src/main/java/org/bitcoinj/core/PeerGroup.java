@@ -540,7 +540,7 @@ public class PeerGroup implements TransactionBroadcaster {
                 if (inactives.isEmpty()) {
                     if (countConnectedAndPendingPeers() < getMaxConnections()) {
                         long interval = Math.max(groupBackoff.getRetryTime() - now, MIN_PEER_DISCOVERY_INTERVAL);
-                        log.info("Peer discovery didn't provide us any more peers, will try again in "
+                        log.debug("Peer discovery didn't provide us any more peers, will try again in "
                             + interval + "ms.");
                         executor.schedule(this, interval, TimeUnit.MILLISECONDS);
                     } else {
@@ -1047,7 +1047,7 @@ public class PeerGroup implements TransactionBroadcaster {
             }
         }
         watch.stop();
-        log.info("Peer discovery took {} and returned {} items", watch, addressList.size());
+        log.debug("Peer discovery took {} and returned {} items", watch, addressList.size());
         return addressList.size();
     }
 
